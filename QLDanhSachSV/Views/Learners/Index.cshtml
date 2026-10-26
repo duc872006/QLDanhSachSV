@@ -1,0 +1,41 @@
+@model IEnumerable<QLDanhSachSV.Models.Learner>
+
+@{
+    ViewData["Title"] = "Danh sách người học";
+}
+
+<h1>Danh sách người học</h1>
+
+<p>
+    <a asp-action="Create">Thêm người học mới</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Mã người học</th>
+            <th>Họ</th>
+            <th>Tên đệm và tên</th>
+            <th>Ngày nhập học</th>
+            <th>Mã ngành</th>
+            <th>Chức năng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.LearnerID</td>
+                <td>@item.LastName</td>
+                <td>@item.FirstMidName</td>
+                <td>@item.EnrollmentDate.ToShortDateString()</td>
+                <td>@item.MajorID</td>
+                <td>
+                    <a asp-action="Edit" asp-route-learnerid="@item.LearnerID">Sửa</a> |
+                    <a asp-action="Details" asp-route-learnerid="@item.LearnerID">Chi tiết</a> |
+                    <a asp-action="Delete" asp-route-learnerid="@item.LearnerID">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
